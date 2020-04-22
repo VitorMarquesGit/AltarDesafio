@@ -1,0 +1,80 @@
+
+<div class="container">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item mr-4">
+          <a class="nav-link" [routerLink]="['/generator']" routerLinkActive="active">Generator Code</a>
+        </li>
+        <li class="nav-item mr-4">
+          <a class="nav-link" href="#" [routerLink]="['/payments']" routerLinkActive="active">Payments</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<br>
+<br>
+
+  <div class="live m-auto text-center font-weight-bold" >   <span class="dot"></span>
+    LIVE</div>
+
+<div class="card" style="width: 15rem; margin: auto; text-align: center; color:grey">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">YOUR CODE NOW:  {{code}}</li>
+  </ul>
+</div>
+
+<div class="row">
+  <label class="labelPayment col-lg-3 mt-3 text-secondary font-weight-bold">Payment</label>
+  <label class="labelAmount col-lg-3 mt-3 text-secondary font-weight-bold">Amount</label>
+</div>
+
+<form class="row">
+  <div class="inputPayment col-lg-3 mt-2">
+    <input class="form-control" id="paymentId" type='text' placeholder='Payment' [(ngModel)]="paymentInput" [ngModelOptions]="{standalone: true}" required>
+  </div>
+  <div class="inputAmount col-lg-3 mt-2">
+    <input class="form-control" id="amountId" type='number' placeholder='Amount' [(ngModel)]="amountInput" [ngModelOptions]="{standalone: true}" required>
+  </div>
+  <div class="col-lg-3 mt-2">
+    <button id="addButton"
+      class="btn btn-outline text-white bg-secondary" (click)="add()" [disabled]="paymentInput == '' ||  amountInput == undefined "> + ADD </button>
+  </div>
+</form>
+
+<div class="table table-responsive-sm mt-3">
+  <div class="labelTable text-secondary font-weight-bold">PAYMENT LIST</div>
+  <table class="table table-bordered mt-2">
+    <thead>
+      <tr class="header text-secondary">
+        <th class="name" >NAME</th>
+        <th class="amount">AMOUNT</th>
+        <th class="code">CODE</th>
+        <th class="grid">GRID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prop of tableArray">
+        <td class="name">{{prop.name}}</td>
+        <td class="amount">{{prop.amount}}</td>
+        <td class="code">{{prop.code}}</td>
+        <td class="grid">
+          <table class="table table-bordered">
+            <tbody>
+              <tr *ngFor="let item of prop.grid, index as i">
+                <th *ngFor="let cell of item">{{cell}}</th>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+

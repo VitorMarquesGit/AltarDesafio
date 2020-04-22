@@ -1,0 +1,69 @@
+<div class="container">
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item mr-4">
+          <a class="nav-link" [routerLink]="['/generator']" routerLinkActive="active">Generator Code</a>
+        </li>
+        <li class="nav-item mr-4">
+          <a class="nav-link" href="#" [routerLink]="['/payments']" routerLinkActive="active">Payments</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<br>
+<br>
+
+  <div class="row">
+    <label class="labelChar col-4 mt-3 text-secondary font-weight-bold">Character</label>
+    <label class="labelTime col-4 mt-3 text-secondary font-weight-bold">Time</label>
+
+  </div>
+  <form class="row">
+    <div class="form-group col-4 text-secondary font-weight-bold">
+      <input type="text" maxlength="1" class="form-control" id="charInput" placeholder="Character" [ngModelOptions]="{standalone: true}" [(ngModel)]="charInput" (keyup)="disable($event)"[disabled]="isDisabled">
+    </div>
+    <div class="form-group col-4 text-secondary font-weight-bold">
+      <input type="text" class="form-control" id="timeInput" value="{{varDate}}" disabled>
+    </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-secondary" (click)="populateTable()">GENERATE 2D GRID</button>
+      </div>
+</form>
+    <label class="labelMessage text-danger" *ngIf="message">Introduza apenas valores alfabéticos [aA-Zz].</label>
+
+
+
+  <div class="table table-responsive-sm mt-3">
+    <div class="labelTable text-secondary font-weight-bold">GENERATOR TABLE</div>
+    <table class="table table-bordered mt-2">
+      <thead>
+        <tr class="header">
+          <th></th>
+          <th *ngFor="let col of cols">{{col}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prop of cols; index as i">
+          <th>{{prop}}</th>
+          <td *ngFor="let col of cols; index as j">{{matrix[i][j]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="live m-auto text-center font-weight-bold" >   <span class="dot"></span>
+    LIVE</div>
+
+<div class="card" style="width: 15rem; margin: auto; text-align: center; color:grey">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">YOUR CODE:  {{code}} </li>
+  </ul>
+</div>
+
+</div>
